@@ -1,6 +1,6 @@
 package com.algaworks.algaposts.textprocessorservice.api.controller;
 
-import com.algaworks.algaposts.textprocessorservice.api.model.PostOutput;
+import com.algaworks.algaposts.posts_service.api.model.PostOutput;
 import io.hypersistence.tsid.TSID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
-@RequestMapping("/api/posts/{postId}/data")
+@RequestMapping("/api/posts/{postId}")
 @Slf4j
 @RequiredArgsConstructor
 public class PostProcessingController {
@@ -31,7 +31,7 @@ public class PostProcessingController {
         }catch(NumberFormatException e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
+         log.info("passou da checagem de valor");
            /* TemperatureLogOutput logOutput = TemperatureLogOutput.builder()
                     .id(IdGenerator.generateTimeBasedUUID())
                     .sensorId(sensorId)
