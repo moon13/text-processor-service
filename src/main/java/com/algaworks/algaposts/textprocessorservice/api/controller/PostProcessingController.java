@@ -22,7 +22,7 @@ public class PostProcessingController {
 
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
     public void data(@PathVariable TSID postId, @RequestBody String input){
-        if (input == null || input.isBlank()) {
+       /* if (input == null || input.isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Double calculo;
@@ -41,17 +41,24 @@ public class PostProcessingController {
 
             log.info(logOutput.toString());*/
 
-           // String exchange = FANOUT_EXCHANGE_NAME;
-             String fila = "text-processor-service.post-processing.v1.q";
-           // String routingKey = "";
-           // Object payload = logOutput;
+             //String exchange = FANOUT_EXCHANGE_NAME;
+         /*    String fila = "text-processor-service.post-processing.v1.q";
+             String fila_pos= "post-service.post-processing-result.v1.q";
+             String routingKey = "";
+
        /* MessagePostProcessor messagePostProcessor = (MessagePostProcessor) message -> {
              message.getMessageProperties().setHeader("sensorId",logOutput.getSensorId().toString());
              return message;
         };*/
-        //rabbitTemplate.convertSendAndReceive(exchange,routingKey,payload, messagePostProcessor);
-        log.info("Tentando consumir da fila {} e {} ", calculo, postId);
+        //Integer.valueOf(input.getBody().trim().length()
+
+       /* log.info("Tentando consumir da fila {} e {} ", calculo, postId);
         PostOutput postOutput = (PostOutput) rabbitTemplate.receiveAndConvert(fila);
         log.info("retornou da fila {} ", postOutput);
+        postOutput.setCalculatedValue(calculo * postOutput.getWordCount());
+        log.info("Valor das palavras calculado {}", postOutput.getCalculatedValue());
+        log.info("Mandando para a fila de pos processamento.");
+        Object payload = postOutput;
+        rabbitTemplate.convertSendAndReceive(fila_pos,payload);*/
     }
 }
