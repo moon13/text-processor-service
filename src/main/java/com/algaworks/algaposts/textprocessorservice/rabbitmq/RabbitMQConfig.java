@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String FANOUT_EXCHANGE_NAME =  "post-processing.post-received.v1.e";
+    public static final String QUEUE_POST_PROCESSING = "post-processing.v1.q";
+    public static final String QUEUE_POST_RESULT = "post-processing-result.v1.q";
 
     @Bean
     public Jackson2JsonMessageConverter jackson2JsonMessageConverter(ObjectMapper objectMapper){
@@ -25,10 +26,5 @@ public class RabbitMQConfig {
         return new RabbitAdmin(connectionFactory);
     }
 
-    @Bean
-    public FanoutExchange exchange(){
-        return ExchangeBuilder.fanoutExchange(
-                FANOUT_EXCHANGE_NAME
-        ).build();
-    }
+
 }

@@ -1,6 +1,5 @@
 package com.algaworks.algaposts.textprocessorservice.api.controller;
 
-import com.algaworks.algaposts.posts_service.api.model.PostOutput;
 import io.hypersistence.tsid.TSID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,43 +21,8 @@ public class PostProcessingController {
 
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
     public void data(@PathVariable TSID postId, @RequestBody String input){
-       /* if (input == null || input.isBlank()) {
+        if (input == null || input.isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Double calculo;
-        try{
-            calculo = Double.parseDouble(input);
-        }catch(NumberFormatException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-         log.info("passou da checagem de valor");
-           /* TemperatureLogOutput logOutput = TemperatureLogOutput.builder()
-                    .id(IdGenerator.generateTimeBasedUUID())
-                    .sensorId(sensorId)
-                    .value(temperature)
-                    .registeredAt(OffsetDateTime.now())
-                    .build();
-
-            log.info(logOutput.toString());*/
-
-             //String exchange = FANOUT_EXCHANGE_NAME;
-         /*    String fila = "text-processor-service.post-processing.v1.q";
-             String fila_pos= "post-service.post-processing-result.v1.q";
-             String routingKey = "";
-
-       /* MessagePostProcessor messagePostProcessor = (MessagePostProcessor) message -> {
-             message.getMessageProperties().setHeader("sensorId",logOutput.getSensorId().toString());
-             return message;
-        };*/
-        //Integer.valueOf(input.getBody().trim().length()
-
-       /* log.info("Tentando consumir da fila {} e {} ", calculo, postId);
-        PostOutput postOutput = (PostOutput) rabbitTemplate.receiveAndConvert(fila);
-        log.info("retornou da fila {} ", postOutput);
-        postOutput.setCalculatedValue(calculo * postOutput.getWordCount());
-        log.info("Valor das palavras calculado {}", postOutput.getCalculatedValue());
-        log.info("Mandando para a fila de pos processamento.");
-        Object payload = postOutput;
-        rabbitTemplate.convertSendAndReceive(fila_pos,payload);*/
     }
 }
